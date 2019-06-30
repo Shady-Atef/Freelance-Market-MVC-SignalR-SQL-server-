@@ -1,0 +1,273 @@
+﻿@model Identityvedio.Models.ClientViewModel
+@{
+   
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .fileContainer {
+        overflow: hidden;
+        position: relative;
+        text-decoration: none;
+    }
+
+        .fileContainer [type=file] {
+            display: block;
+            filter: alpha(opacity=0);
+            opacity: 0;
+            position: absolute;
+            right: 0;
+            text-align: right;
+            top: 0;
+        }
+
+    .input-file-container {
+        position: relative;
+        width: 225px;
+    }
+
+    .js .input-file-trigger {
+        display: block;
+        padding: 14px 45px;
+        color: #fff;
+        font-size: 1em;
+        transition: all .4s;
+        cursor: pointer;
+        background-color: rgb(55, 160, 0);
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        text-transform: capitalize;
+        font-size: 16px;
+        -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+        box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+        -webkit-border-radius: 5px 5px 5px 5px;
+        border-radius: 5px 5px 5px 5px;
+        margin: 5px 20px 40px 20px;
+        -webkit-transition: all 0.3s ease-in-out;
+        -moz-transition: all 0.3s ease-in-out;
+        -ms-transition: all 0.3s ease-in-out;
+        -o-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .js .input-file {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 225px;
+        opacity: 0;
+        padding: 14px 0;
+        cursor: pointer;
+    }
+
+        .js .input-file:hover + .input-file-trigger,
+        .js .input-file:focus + .input-file-trigger,
+        .js .input-file-trigger:hover,
+        .js .input-file-trigger:focus {
+            /*background: rgb(55, 160, 0);
+            color: #39D2B4;*/
+        }
+
+    .file-return {
+        margin: 0;
+    }
+
+        .file-return:not(:empty) {
+            margin: 1em 0;
+        }
+
+    .js .file-return {
+        font-style: italic;
+        font-size: .9em;
+        font-weight: bold;
+    }
+
+        .js .file-return:not(:empty):before {
+            content: "Selected file: ";
+            font-style: normal;
+            font-weight: normal;
+        }
+
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+
+
+<br /><br />
+<div class="container bootstrap snippet">
+    <div class="row">
+        <div class="col-sm-10"><h1> @ViewBag.user.UserName</h1></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+           
+            
+
+        </div><!--/col-3-->
+        <div class="col-sm-9">
+
+            <div class="tab-content">
+                <div class="tab-pane active" id="home">
+
+
+                    <div class="form-group">
+
+                        <div class="col-xs-6">
+                            <label for="last_name"><h4>User Name</h4></label>
+                            <input readonly type="text" class="form-control" name="last_name" id="last_name" value="@ViewBag.user.UserName" title="enter your last name if any.">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+                        <div class="col-xs-6">
+                            <label for="phone"><h4>Phone</h4></label>
+                            <input readonly type="text" class="form-control" name="phone" id="phone" value="@ViewBag.user.PhoneNumber" title="enter your phone number if any.">
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <div class="col-xs-6">
+                            <label for="email"><h4>Email</h4></label>
+                            <input readonly type="email" class="form-control" name="email" id="email" value="@ViewBag.user.Email" title="enter your email.">
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <div class="col-xs-6">
+                            <label for="email"><h4>Address</h4></label>
+                            <input readonly type="email" class="form-control" id="location" value="@ViewBag.user.Address" title="enter a location">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <br>
+                            <a data-toggle="tab" href="#messages"><button class="btn btn-lg btn-success"><i class="glyphicon glyphicon-ok-sign"></i>Next</button></a>
+                        </div>
+                    </div>
+
+
+
+                </div><!--/tab-pane-->
+                <div class="tab-pane" id="messages">
+
+                    @using (Html.BeginForm("CreateProfile", "Client", FormMethod.Post, new { enctype = "multipart/form-data", @name = "formm" }))
+                    {
+                        @*<div class="form-group">
+                                <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
+                                @Html.TextBoxFor(m => m.ImagePath, new { @class = "text-center center-block file-upload", type = "file", accept = "image/*" })
+                        
+                        </div>*@
+                        <div>
+                            <div class="input-file-container">
+                                <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
+                                @Html.TextBoxFor(m=>m.ImagePath, new { @class = "input-file text-center center-block file-upload", @id = "my-file", type = "file", accept = "image/*" })
+                                <label tabindex="0" for="my-file" class="input-file-trigger" >Select image...</label>
+                            </div>
+                            <p class="file-return"></p>
+                        </div>
+
+                            <div class="form-group">
+
+                                <div class="col-xs-6">
+                                    <label for="first_name"><h4>Personal Description</h4></label>
+                                    <div>
+                                        @Html.TextAreaFor(m => m.Description, new { @class = "form-control area", @style = "min-width: 100%; ", @rows = "10", @id = "comment" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <div class="col-xs-6">
+                                    <label for="FullName"><h4>FullName:</h4></label>
+                                    @Html.TextBoxFor(m => m.FullName, new { @class = "form-control area", @style = "min-width: 100%; ", @rows = "10", @id = "comment" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <div class="col-xs-6">
+                                    <label for="last_name"><h4>Profesion</h4></label>
+                                    @Html.TextBoxFor(m => m.Profesion, new { @class = "form-control area", @style = "min-width: 100%; ", @rows = "10", @id = "comment" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+
+                                <div class="col-xs-6">
+                                    <label for="phone"><h4>SSN</h4></label>
+                                    @Html.TextBoxFor(m => m.SSN, new { @class = "form-control area", @style = "min-width: 100%; ", @rows = "10", @id = "comment" })
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <a data-toggle="tab" href="#home"><button class="btn btn-lg btn-success"><i class="glyphicon glyphicon-ok-sign"></i>Bake</button></a>
+                                    <button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i>Save</button>
+                                </div>
+                            </div>
+                            @*<div class="text-center">
+
+                    <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
+                    <h6>Upload a different photo...</h6>
+                    <a class="fileContainer text-center center-block file-upload">
+                        uploade File
+                        @Html.TextBoxFor(m => m.ImagePath, new { type = "file", accept = "image/*" })
+                    </a>
+                </div>*@
+
+
+                            }
+
+                        </div><!--/tab-content-->
+                    </div><!--/col-9-->
+        </div><!--/row-->
+        </div>
+    </div>
+        <script>
+
+            $(document).ready(function () {
+
+                var readURL = function (input) {
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+
+                        reader.onload = function (e) {
+                            $('.avatar').attr('src', e.target.result);
+                        }
+
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                }
+
+
+                $(".file-upload").on('change', function () {
+                    readURL(this);
+                });
+            });
+
+            document.querySelector("html").classList.add('js');
+
+            var fileInput = document.querySelector(".input-file"),
+                button = document.querySelector(".input-file-trigger"),
+                the_return = document.querySelector(".file-return");
+
+            button.addEventListener("keydown", function (event) {
+                if (event.keyCode == 13 || event.keyCode == 32) {
+                    fileInput.focus();
+                }
+            });
+            button.addEventListener("click", function (event) {
+                fileInput.focus();
+                return false;
+            });
+            fileInput.addEventListener("change", function (event) {
+                the_return.innerHTML = this.value;
+            });  
+        </script>

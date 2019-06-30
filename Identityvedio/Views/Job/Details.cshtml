@@ -1,0 +1,73 @@
+﻿@model Identityvedio.Models.Job
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="site-section bg-light">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12 col-lg-8 mb-5">
+
+
+
+                <div class="p-5 bg-white">
+
+                    <div class="mb-4 mb-md-5 mr-5">
+                        <div class="job-post-item-header d-flex align-items-center">
+                            <h2 class="mr-3 text-black h4">@Html.DisplayFor(model => model.JobTitle)</h2>
+                            <div class="badge-wrap">
+                                @if (Model.Price != null)
+                                {
+                                    <span class="border border-warning text-warning py-2 px-4 rounded">
+                                        <label>Fixed</label>
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="border border-warning text-warning py-2 px-4 rounded">
+                                        <label>Hours</label>
+                                    </span>
+                                }
+                            </div>
+                        </div>
+                        <div style="padding-top:10px;">
+                            @if (Model.Price != null)
+                            {
+                                <div class="mr-3">
+                                    <span class="fl-bigmug-line-portfolio23"></span>
+                                    <h2 class="mr-3 text-black h4" style="height:50px;  padding:10px;margin-bottom: 10px; margin-top:20px; background-color:rgb(249, 249, 249);">
+                                        Job Price
+                                    </h2>
+                                    <a href="#">
+                                        @Html.DisplayFor(model => model.Price)
+                                    </a>
+                                </div>
+                            }
+                                <div>
+                                    <span class="fl-bigmug-line-big104"></span> <span>
+                                        <h2 class="mr-3 text-black h4" style="height:50px; padding:10px;margin-bottom: 10px; margin-top:20px; background-color:rgb(249, 249, 249);">
+                                            Job Experience Level
+                                        </h2>
+                                        @Html.DisplayFor(model => model.JobExperienceLevel.ExperienceLevel)
+                                    </span>
+                                </div>
+                            </div>
+
+                    </div>
+                    <h2 class="mr-3 text-black h4" style="height:50px;  padding:10px;margin-bottom: 10px; margin-top:20px; background-color:rgb(249, 249, 249);">
+                        Job Describtion
+                    </h2>
+
+                    <p>
+                        @Html.DisplayFor(model => model.Desc)
+                    </p>
+
+                    <p class="mt-5"><a href="~/Proposal/CreateProposal/@Model.ID" class="btn btn-primary  py-2 px-4">Apply Job</a></p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

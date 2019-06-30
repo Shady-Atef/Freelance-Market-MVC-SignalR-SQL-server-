@@ -1,0 +1,54 @@
+﻿@model Identityvedio.Models.Proposal
+
+
+<div class="site-section bg-light">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12 col-lg-8 mb-5">
+
+                <div class="p-5 bg-white">
+
+                    <div class="md-5 mr-5">
+
+                        <div class=" bg-white">
+                            <h3 class="h5 text-black">
+                                @*@Html.DisplayNameFor(model=>model.)*@
+                                Job Ttle
+                            </h3>
+                            <p style=" background-color:rgb(249, 249, 249);  font-size:24px;padding:10px;">
+                                @Html.DisplayFor(model => model.Job.JobTitle)
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="md-5 mr-5">
+
+
+                        <div class="bg-white">
+                            <h3 class="h5 text-black mb-3">@Html.DisplayNameFor(model => model.proposal)</h3>
+                            <p style=" background-color:rgb(249, 249, 249); font-size:18px;padding:10px;"> @Html.DisplayFor(model => model.proposal)</p>
+                        </div>
+
+                    </div>
+                    @if (Model.status == 1)
+                    {
+                        @Html.ActionLink("Confirm", "ConfirmPropsal", "Proposal", new { proposalId = Model.ID, freelanceId = Model.FreelancerId, messageText = Model.proposal }, new { @class = "btn btn-primary" })
+
+                    }
+                    else if(Model.status == 2)
+                    {
+                        @Html.ActionLink("Hired", null, new { proposalId = Model.ID, freelanceId = Model.FreelancerId, messageText = Model.proposal }, new { @class = "btn btn-danger disabled" })
+                    }
+                    else
+                    {
+                    @Html.ActionLink("Waiting", null, new { proposalId = Model.ID, freelanceId = Model.FreelancerId, messageText = Model.proposal }, new { @class = "btn btn-danger disabled" })
+                    }
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

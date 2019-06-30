@@ -1,0 +1,136 @@
+﻿@model Identityvedio.Models.Contract
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .hide {
+        display: none;
+    }
+</style>
+
+<script>
+    function show1() {
+        document.getElementById('div1').style.display = 'none';
+    }
+    function show2() {
+        document.getElementById('div1').style.display = 'block';
+    }
+</script>
+
+<div style="height: 113px;"></div>
+
+<div class="unit-5 overlay" style="background-image: url(@Url.Content("/Content/images/contract.jpg"));">
+    <div class="container text-center">
+        <h2 class="mb-0">Post a Job</h2>
+        <p class="mb-0 unit-6"><a href="index.html">Home</a> <span class="sep">></span> <span>Create Contract</span></p>
+    </div>
+</div>
+
+
+
+<div class="site-section bg-light">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12 col-lg-8 mb-5">
+
+
+
+
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+
+
+                <div class="p-5 bg-white">
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="row form-group">
+                        <div class="col-md-12 mb-3 mb-md-0">
+                            @Html.LabelFor(model => model.ProposalId, "ProposalId", htmlAttributes: new { @class = "font-weight-bold" })
+                            @* @Html.DropDownList("ProposalId", null, htmlAttributes: new { @class = "form-control", @placeholder = "Prop ID" })*@
+                            @Html.EditorFor(model => model.ProposalId, new { htmlAttributes = new { @class = "form-control" } })
+
+                            @Html.ValidationMessageFor(model => model.ProposalId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    @Html.HiddenFor(model => model.FreelanceId)
+                    @Html.HiddenFor(model => model.ClientId)
+                    @Html.HiddenFor(model => model.JobId)
+
+                    @if (Model.FinalPrice != null)
+                    {
+                        <div class="row form-group">
+                            <div class="col-md-12 mb-3 mb-md-0">
+                                @Html.LabelFor(model => model.FinalPrice, "FinalPrice", htmlAttributes: new { @class = "font-weight-bold" })
+                                @Html.EditorFor(model => model.FinalPrice, new { htmlAttributes = new { @class = "form-control", @placeholder = "Final Price" } })
+                                @Html.ValidationMessageFor(model => model.FinalPrice, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                    }
+                    else
+                    {
+
+                        <div class="row form-group">
+                            <div class="col-md-12 mb-3 mb-md-0">
+                                @Html.LabelFor(model => model.Hours, "Hours", htmlAttributes: new { @class = "font-weight-bold" })
+                                @Html.EditorFor(model => model.Hours, new { htmlAttributes = new { @class = "form-control", @placeholder = "No. Hours" } })
+                                @Html.ValidationMessageFor(model => model.Hours, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    }
+                    <div class="row form-group">
+                        <div class="col-md-12 mb-3 mb-md-0">
+                            @Html.LabelFor(model => model.Hours, "Hours", htmlAttributes: new { @class = "font-weight-bold" })
+                            @Html.EditorFor(model => model.Hours, new { htmlAttributes = new { @class = "form-control", @placeholder = "No. Hours" } })
+                            @Html.ValidationMessageFor(model => model.Hours, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="row form-group">
+                        <div class="col-md-12 mb-3 mb-md-0">
+                            @Html.LabelFor(model => model.StartTime, htmlAttributes: new { @class = "font-weight-bold" })
+                            @Html.EditorFor(model => model.StartTime, new { htmlAttributes = new { @class = "form-control", @placeholder = "Start Time" } })
+                            @Html.ValidationMessageFor(model => model.StartTime, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="row form-group">
+                        <div class="col-md-12 mb-3 mb-md-0">
+                            @Html.LabelFor(model => model.EndTime, htmlAttributes: new { @class = "font-weight-bold" })
+                            @Html.EditorFor(model => model.EndTime, new { htmlAttributes = new { @class = "form-control", @placeholder = "End Time" } })
+                            @Html.ValidationMessageFor(model => model.EndTime, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Create" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+                    }
+
+
+                </div>
+                </div>
+    </div>
+</div>
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

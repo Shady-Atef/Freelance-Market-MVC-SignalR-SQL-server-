@@ -1,0 +1,3 @@
+
+    <link rel="stylesheet" href=@Url.Content("/Content/css/bootstrap.min.css")>
+    <link rel="stylesheet" href=@Url.Content("/Content/css/magnific-popup.css")>

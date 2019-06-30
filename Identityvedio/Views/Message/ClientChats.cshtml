@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Identityvedio.Models.Proposal>
+@using Microsoft.AspNet.Identity;
+
+
+<div class="site-section bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 mb-5 mb-md-0" data-aos="fade-up" data-aos-delay="100">
+                <h3 class="mb-5 ">Chats</h3>
+                <div class="rounded border jobs-wrap">
+
+
+                    @foreach (var item in Model)
+                    {
+                        <a href="~/Message/index/@item.ID" class="job-item d-block d-md-flex align-items-center freelance">
+                            <div class="job-details h-100">
+                                <div class="p-3 align-self-center">
+                                    <div class="d-block d-lg-flex">
+                                        <div class="mr-3">
+
+                                            @Html.DisplayFor(modelItem => item.ApplicationUser.UserName, null, new { @class = "text-danger" })
+                                        </div>
+                                        <div class="mr-3">
+                                            <span class="icon-suitcase mr-1"></span>
+                                            @Html.DisplayFor(modelItem => item.Job.JobTitle, null, new { @class = "text-danger" })
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    }
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

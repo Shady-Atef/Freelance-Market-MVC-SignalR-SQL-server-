@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Identityvedio.Models.Contract>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ApplicationClient.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApplicationFreelancer.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Job.JobTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Proposal.FreelancerId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndTime)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApplicationClient.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApplicationFreelancer.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Job.JobTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Proposal.FreelancerId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndTime)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

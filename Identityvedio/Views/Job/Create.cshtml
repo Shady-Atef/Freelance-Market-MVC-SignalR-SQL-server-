@@ -1,0 +1,154 @@
+﻿@model Identityvedio.Models.JobVM
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .hide {
+        display: none;
+    }
+</style>
+
+<script>
+    function show1() {
+        document.getElementById('div1').style.display = 'none';
+    }
+    function show2() {
+        document.getElementById('div1').style.display = 'block';
+    }
+</script>
+
+<div style="height: 10px;"></div>
+
+<div class="unit-5 overlay" style="background-image: url(@Url.Content("/Content/images/hero_1.jpg"));">
+    <div class="container text-center">
+        <h2 class="mb-0">Post a Job</h2>
+        <p class="mb-0 unit-6"><a href="~/Client/ClientJobs">Home</a> <span class="sep">></span> <span>Post a Job</span></p>
+    </div>
+</div>
+
+<div class="site-section bg-light">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12 col-lg-8 mb-5">
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="p-5 bg-white">
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="row form-group">
+                            <div class="col-md-12 mb-3 mb-md-0">
+                                @Html.LabelFor(model => model.JobTitle, htmlAttributes: new { @class = "font-weight-bold" })
+                                @Html.EditorFor(model => model.JobTitle, new { htmlAttributes = new { @class = "form-control", @placeholder = "eg. Full Stack Frontend" } })
+                                @Html.ValidationMessageFor(model => model.JobTitle, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col-md-12 mb-3 mb-md-0">
+                                @Html.LabelFor(model => model.CatID, "Job Category", htmlAttributes: new { @class = "font-weight-bold" })
+                                @Html.DropDownList("CatID", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.CatID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row form-group">
+
+                            <div class="col-md-12 mb-3 mb-md-0">
+                                <label class="font-weight-bold">Skills</label>
+                            </div>
+                            <div class="col-md-12 mb-3 mb-md-0">
+
+
+                                <p>
+
+                                    @for (int i = 0; i < Model.SkillList.Count; i++)
+                                     {
+                                        <input type="checkbox" value="@Model.SkillList[i].SkillId" name="SkillList" id="SkillList_@i">
+                                        <label for="SkillList_@i">
+                                            @Model.SkillList[i].Text
+                                        </label>
+
+
+                                        @Html.HiddenFor(m => m.SkillList[i].SkillId)
+
+
+                                        @Html.HiddenFor(m => m.SkillList[i].Text)
+                                        @Html.HiddenFor(m => m.SkillList[i].IsChecked)
+
+                                     }
+
+
+                                </p>
+
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col-md-12 mb-3 mb-md-0">
+                                @Html.LabelFor(model => model.Desc, htmlAttributes: new { @class = "font-weight-bold" })
+                                @Html.TextArea("Desc", null, new { @class = "form-control", cols = "30", rows = "5" })
+                                @*@Html.EditorFor(model => model.Desc, new { htmlAttributes = new { @class = "form-control", @placeholder = "eg. c++, c#, Inc." } })*@
+                                @Html.ValidationMessageFor(model => model.Desc, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-12 mb-3 mb-md-0">
+                                @Html.LabelFor(model => model.Price, "Payment Type", htmlAttributes: new { @class = "font-weight-bold" })
+
+                                <br />
+                                <label>
+                                    @Html.RadioButton("PaymentType", "Hours", new { @onclick = "show1()" })
+                                    Hours
+                                </label>
+                                <label>
+                                    @Html.RadioButton("PaymentType", "Fixed Price", new { @onclick = "show2()" })
+                                    Fixed Price
+                                </label>
+                                <div id="div1" class="hide">
+                                    @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control", @placeholder = "Price amount" } })
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+                        <div class="row form-group">
+                            <div class="col-md-12 mb-3 mb-md-0">
+                                @Html.LabelFor(model => model.ExperienceLevelId, "Experience Level", htmlAttributes: new { @class = "font-weight-bold" })
+                                @Html.DropDownList("ExperienceLevelId", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.ExperienceLevelId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <input type="submit" value="Post a Job" class="btn btn-primary  py-2 px-5">
+                            </div>
+                        </div>
+
+                    </div>
+
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
+@Scripts.Render("~/bundles/jqueryval")
+

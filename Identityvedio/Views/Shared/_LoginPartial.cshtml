@@ -1,0 +1,56 @@
+﻿@*@using Microsoft.AspNet.Identity
+    @if (Request.IsAuthenticated)
+    {
+        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+        {
+        @Html.AntiForgeryToken()
+
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "ViewProfile", "Client", routeValues: null, htmlAttributes: new { id = User.Identity.GetUserName() })
+            </li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        </ul>
+        }
+    }
+    else
+    {
+        <ul class="nav navbar-nav navbar-right">
+            <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+            <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        </ul>
+    }*@
+
+
+@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <ul class="site-menu js-clone-nav d-none d-lg-block">
+            <li>
+                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "ViewProfile", "Client", routeValues: null, htmlAttributes: new { id = User.Identity.GetUserName() })
+
+            </li>
+            <li>
+                <a href="javascript:document.getElementById('logoutForm').submit()"><span class="bg-primary text-white py-3 px-4 rounded">log out</span></a>
+
+            </li>
+
+            @*<li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>*@
+        </ul>
+
+
+    }
+}
+else
+{
+    <ul class="site-menu js-clone-nav d-none d-lg-block">
+        @*<li><span class="bg-primary text-white py-3 px-4 rounded">@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</span></li>*@
+        <li><a href="~/Account/Register"><span class="bg-primary text-white py-3 px-4 rounded">Register</span></a></li>
+        <li><a href="~/Account/Login"><span class="bg-primary text-white py-3 px-4 rounded">Login</span></a></li>
+
+    </ul>
+}

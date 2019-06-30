@@ -1,0 +1,67 @@
+﻿@model Identityvedio.Models.Contract
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Contract</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplicationClient.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplicationClient.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplicationFreelancer.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplicationFreelancer.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Job.JobTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Job.JobTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Proposal.FreelancerId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Proposal.FreelancerId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndTime)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
